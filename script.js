@@ -1,76 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   const showBtn = document.getElementById("show");
   const modal = document.getElementById("modal");
   const closeBtn = document.getElementById("closeBtn");
   const modalContent = document.getElementById("modalContent");
 
   showBtn.addEventListener("click", () => {
+
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
-    const age = document.getElementById("age").value;
+
+    const age = document.querySelector("#age").value;
 
     let sex = "";
-    if (document.getElementById("male")?.checked) {
-      sex = document.getElementById("male").value;
-    } else if (document.getElementById("female")?.checked) {
-      sex = document.getElementById("female").value;
-    }
+    const radios = document.getElementsByClassName("sex");
+    if (radios[0]?.checked) sex = radios[0].value;
+    else if (radios[1]?.checked) sex = radios[1].value;
 
-    const colorSelect = document.getElementById("colors");
+
+    const selects = document.getElementsByTagName("select");
     let favoriteColor = "";
-    if (colorSelect) {
-      favoriteColor = colorSelect.options[colorSelect.selectedIndex].value;
+    if (selects.length > 0) {
+      favoriteColor = selects[0].options[selects[0].selectedIndex].value;
     }
 
     let hobbies = "";
-    if (document.getElementById("doodling")?.checked) {
+    if (document.querySelector("#doodling")?.checked) {
       hobbies += (hobbies ? ", " : "") + "Doodling";
     }
-    if (document.getElementById("sim-racing")?.checked) {
+    if (document.querySelector("#sim-racing")?.checked) {
       hobbies += (hobbies ? ", " : "") + "Sim Racing";
     }
+    if (hobbies === "") hobbies = "N/A";
 
-    if (hobbies === "") {
-      hobbies = "N/A";
-    }
 
-    if (
-      name === "" ||
-      email === "" ||
-      age === "" ||
-      sex === "" ||
-      favoriteColor === ""
-    ) {
+    const about = document.getElementById("about").value;
+
+    if (name === "" || email === "" || age === "" || sex === "" || favoriteColor === "") {
       alert("Please fill out all required fields!");
       return;
     }
 
-    const about = document.getElementById("about").value;
-
     const output =
-      "Name: " +
-      name +
-      "<br>" +
-      "Email: " +
-      email +
-      "<br>" +
-      "Age: " +
-      age +
-      "<br>" +
-      "Sex: " +
-      sex +
-      "<br>" +
-      "Favorite Color: " +
-      favoriteColor +
-      "<br>" +
-      "Hobby: " +
-      hobbies.trim() +
-      "<br>" +
-      "About Yourself: " +
-      about;
+      "Name: " + name + "<br>" +
+      "Email: " + email + "<br>" +
+      "Age: " + age + "<br>" +
+      "Sex: " + sex + "<br>" +
+      "Favorite Color: " + favoriteColor + "<br>" +
+      "Hobby: " + hobbies + "<br>" +
+      "About Yourself: " + about;
 
     modalContent.innerHTML = output;
-
     modal.style.display = "block";
   });
 
