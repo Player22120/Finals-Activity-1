@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const age = document.querySelector("#age").value;
 
     let sex = "";
-    const radios = document.getElementsByClassName("sex");
+    const radios = document.getElementsByClassName("gender");
     if (radios[0]?.checked) sex = radios[0].value;
     else if (radios[1]?.checked) sex = radios[1].value;
 
